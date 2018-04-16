@@ -4,8 +4,10 @@
 void clearInputBuffer(char* string, int sizeOfAlloc)
 {
 	int length = strlen(string);
-	if (length < sizeOfAlloc)
-		string[length] = '\0';
+	if (length + 1 < sizeOfAlloc)
+		string[length - 1] = '\0';
+	else if(string[sizeOfAlloc - 2] == '\n')
+		string[length - 1] = '\0';
 	else
 		while (getchar() != '\n');
 }
